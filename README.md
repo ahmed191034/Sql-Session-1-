@@ -1,39 +1,27 @@
-# Sql-Session-1-
-Explored SQL operations on GitHub. Described "customer" table, displayed data using SELECT, showcased filtering, aggregation, and pattern matching. Emphasized code clarity with detailed comments, revealing my adeptness in SQL for potential collaborators or employers.
-Describe customer; # describe tables
-Select * from customer; # show tables
-/* want to look for specific column use */
-select First_name, last_name, customer_id
-from customer;
-use telco;
- select * from billing ; 
- 
- select bill_id, amount_due
- from billing;
- 
- # how distinct statement work
- 
-select distinct email # to show unique items in email from customer table
-from customer;
+# SQL Fundamentals — Session 1: Filtering & Aggregation
 
-select count(distinct email) from customer; # using a count function to calculate number of distinct email
-select sum(amount_due) from billing;
-Select * from customer where First_name in ("Tore");
+First in a series of SQL practice sessions working with a telecom-style `customer` and `billing` dataset. Covers the basics of querying and filtering relational data.
 
-# how where clause works
-select * from billing
-where amount_due>5000;
+**Covers:** `SELECT` / `DESCRIBE`, column filtering, `DISTINCT`, `WHERE` with `IN`, pattern matching with `LIKE` and wildcards, `ORDER BY`, `LIMIT`, aggregate functions (`COUNT`, `SUM`).
 
-# use of where with in we check for multiple
-# we can use like function to check and using % sign begning is like can begin
-#should be these number 
-# while we can also do this with %277 its showing ending must be 277 and begining can be anything
-select * from customer
-where address in("5 Northridge Road","814 Kinsman Lane") and Phone_number like "277%";
-select * from customer
-where phone_number like ("277%");
+## Example
 
+```sql
+-- unique emails, and a count of them
+SELECT DISTINCT email FROM customer;
+SELECT COUNT(DISTINCT email) FROM customer;
 
+-- pattern matching: numbers starting with 277, addresses among a list
+SELECT * FROM customer
+WHERE address IN ("5 Northridge Road", "814 Kinsman Lane")
+  AND phone_number LIKE "277%";
+```
 
-select * from billing order by customer_id asc , amount_due desc;
-select * from billing limit 10;
+## Files
+
+- `Customer.csv`, `Billing.csv` — sample dataset
+- Query script (see repository)
+
+## Note
+
+This is part of a progressive series (Sessions 1–6) building up SQL skills on the same dataset — see Sessions 2–6 for DDL, joins, subqueries, window functions, and CTEs.
